@@ -1,0 +1,48 @@
+/**
+Trabalho da Disciplina de Programação de JavaScript
+Turma: 963N
+Aluno: David Alex Carvalho  
+Matrícula: 2024101244
+*/
+ 
+// Função que verifica se um número é primo
+function isPrime(num) {
+    if (num <= 1) return false; // Números menores ou iguais a 1 não são primos
+    if (num <= 3) return true;  // 2 e 3 são primos
+
+    // Elimina múltiplos de 2 e 3
+    if (num % 2 === 0 || num % 3 === 0) return false;
+
+    for (let i = 5; i * i <= num; i += 6) {
+        if (num % i === 0 || num % (i + 2) === 0) return false;
+    }
+
+    return true;
+}
+
+// Função que encontra e exibe os 10 maiores números primos a partir de um número fornecido pelo usuário
+function findLargestPrimes() {
+    const userNumber = parseInt(prompt("Digite um número:"));
+
+    if (isNaN(userNumber)) {
+        console.log("Por favor, insira um número válido.");
+        return;
+    }
+
+    let primes = [];
+    let number = userNumber;
+
+    // Loop para encontrar os 10 maiores números primos
+    while (primes.length < 10) {
+        if (isPrime(number)) {
+            primes.push(number);
+        }
+        number++;
+    }
+
+    // Exibindo os 10 maiores números primos
+    console.log(`Os 10 maiores números primos a partir de ${userNumber} são: ${primes.join(', ')}`);
+}
+
+// Executar a função para encontrar e exibir os 10 maiores números primos
+findLargestPrimes();
